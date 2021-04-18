@@ -1,18 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
+using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class GamePlayController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+   private PhotonView PV;
+   public Text txtNumber;
+   int globalNumber;
+
+    void Start(){
+        PV= GetComponent<PhotonView>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void Update(){
+        txtNumber.text="Number to Increase: "+globalNumber;
+    }
+
+    public void IncreaseNumber(){
+        PV.RPC("RPC_IncreaseNumber",RpcTarget.AllViaServer);
+    }
+
+    [PunRPC]
+    void RPC_IncreaseNumber(){
+        globalNumber++;
     }
 }
