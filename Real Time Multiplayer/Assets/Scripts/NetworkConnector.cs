@@ -1,44 +1,46 @@
-// NetworkConnector.cs
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
 public class NetworkConnector : MonoBehaviourPunCallbacks
 {
-    public GameObject playerPrefab;
+    //instance
+    public static NetworkConnector instance;
 
-    void Start()
-    {
+    void Awake (){
+        
+        if(instance != null && instance != this)
+            gameObject.SetActive(false);
+        else {
+            //set the instance
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+		}
+
+	}
+
+    void Start(){
         PhotonNetwork.ConnectUsingSettings();
-    }
+	}
 
-    #region Pun Callbacks
+    public override void OnConnectedToMaster(){
+        Debug.Log("Connected to master server");
+        CreateRoom("testRoom");
+	}
 
-    public override void OnConnectedToMaster()
-    {
-        // Try to join a random room
-        PhotonNetwork.JoinRandomRoom();
-    }
+    public override void OnCreatedRoom(){
+        Debug.Log("Created room: "+ PhotonNetwork.CurrentRoom.Name);
+	}
 
-    public override void OnDisconnected(DisconnectCause cause)
-    {
-        Debug.LogWarning($"Failed to connect: {cause}");
-    }
+    public void CreateRoom (string roomName){
+     PhotonNetwork.CreateRoom(roomName);
+	}
 
-    public override void OnJoinRandomFailed(short returnCode, string message)
-    {
-        // Failed to connect to random
-        Debug.Log(message);
+    public void JoinRoom (string roomName){
+        PhotonNetwork.JoinRoom(roomName);
+	}
 
-        // Create room
-        PhotonNetwork.CreateRoom("My First Room");
-    }
-
-    public override void OnJoinedRoom()
-    {
-        Debug.Log($"{PhotonNetwork.CurrentRoom.Name} joined!");
-        PhotonNetwork.Instantiate(playerPrefab.name, new Vector2(0, 0), Quaternion.identity);
-    }
-
-    #endregion
+    public void ChangeScene (string sceneName){
+        PhotonNetwork.LoadLevel(sceneName);
+	}
 }
