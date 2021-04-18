@@ -298,7 +298,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 655793764}
-  - component: {fileID: 655793763}
   m_Layer: 0
   m_Name: NetworkConnector
   m_TagString: Untagged
@@ -306,19 +305,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &655793763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 655793762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20f4df4754e635b42bcc44d7a65b2030, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 4793146013595432029, guid: a7d1720bbe4536642a1c57e707effec4, type: 3}
 --- !u!4 &655793764
 Transform:
   m_ObjectHideFlags: 0
