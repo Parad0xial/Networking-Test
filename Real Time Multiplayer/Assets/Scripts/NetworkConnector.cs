@@ -1,9 +1,12 @@
+// NetworkConnector.cs
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
 public class NetworkConnector : MonoBehaviourPunCallbacks
 {
+    public GameObject playerPrefab;
+
     void Start()
     {
         PhotonNetwork.ConnectUsingSettings();
@@ -17,22 +20,25 @@ public class NetworkConnector : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinRandomRoom();
     }
 
-
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        Debug.LogWarning($"Failed to connect: {cause}");
+    }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
-        // Failed to connect to random, probably because none exist
+        // Failed to connect to random
         Debug.Log(message);
 
-        // Create a new room to join instead
+        // Create room
         PhotonNetwork.CreateRoom("My First Room");
     }
 
     public override void OnJoinedRoom()
     {
         Debug.Log($"{PhotonNetwork.CurrentRoom.Name} joined!");
+        PhotonNetwork.Instantiate(playerPrefab.name, new Vector2(0, 0), Quaternion.identity);
     }
 
     #endregion
 }
-
