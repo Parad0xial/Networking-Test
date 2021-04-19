@@ -45,7 +45,7 @@ namespace Photon.Pun.Demo.PunBasics
 				}
 			}
 
-			PhotonNetwork.NickName =	defaultName;
+			PhotonNetwork.NickName = defaultName;
 		}
 
 		#endregion
@@ -66,7 +66,6 @@ namespace Photon.Pun.Demo.PunBasics
 		    }
 			PhotonNetwork.NickName = value;
 
-			PlayerPrefs.SetString(playerNamePrefKey, value);
 		}
 		
 		#endregion
