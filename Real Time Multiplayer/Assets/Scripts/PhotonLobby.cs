@@ -11,9 +11,9 @@ public class PhotonLobby : MonoBehaviourPunCallbacks
    RoomInfo[] rooms;
    public GameObject btnJoin;
    public GameObject btnLeave;
-    public Text txtInfo;
+   public Text txtInfo;
 
-     public Text txtNumPlayers;
+   public Text txtNumPlayers;
 
    private void Awake(){
        lobby=this;//Create the singleton, lives withing the scene

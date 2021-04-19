@@ -10,8 +10,11 @@
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using Photon.Pun;
 using Photon.Realtime;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.UI;
 
 namespace Photon.Pun.Demo.PunBasics
 {
@@ -29,10 +32,13 @@ namespace Photon.Pun.Demo.PunBasics
 		#region Public Fields
 
 		static public GameManager Instance;
+		//public Text ping;
 
 		#endregion
 
 		#region Private Fields
+		
+		//private float pingValue;
 
 		private GameObject instance;
 
@@ -91,6 +97,9 @@ namespace Photon.Pun.Demo.PunBasics
 			{
 				QuitApplication();
 			}
+
+			//pingValue = PhotonNetwork.networkingPeer.RoundTripTime;
+			//ping.text = "" + pingValue;
 		}
 
         #endregion
