@@ -26,8 +26,8 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
-        float horizontal = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-        float vertical = Input.GetAxis("Vertical") * speed * Time.deltaTime;
+        float horizontal = Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime;
+        float vertical = Input.GetAxisRaw("Vertical") * speed * Time.deltaTime;
 
         Vector2 moveVector = new Vector2(horizontal, vertical);
 
